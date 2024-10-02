@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 requests = "*"
 project0 = {file = ".", editable = true}
+PyPDF2 = "*"
+pypdf = "*"
 
 [dev-packages]
 
