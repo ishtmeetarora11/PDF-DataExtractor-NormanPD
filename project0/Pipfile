@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 requests = "*"
-assignment0 = {file = ".", editable = true}
+project0 = {file = ".", editable = true}
 
 [dev-packages]
 
