@@ -33,7 +33,7 @@ def status(conn):
                 SELECT nature, COUNT(*)
                 FROM incidents
                 GROUP BY nature
-                ORDER BY COUNT(*) DESC, nature ASC;
+                ORDER BY nature ASC;
                 """)
     for (nature, count) in data:
         print(f"{nature}|{count}")       
