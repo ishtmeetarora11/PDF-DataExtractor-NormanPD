@@ -1,3 +1,4 @@
+import pypdf
 from pypdf import PdfReader
 from io import BytesIO
 import re
