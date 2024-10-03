@@ -38,15 +38,20 @@ pipenv run pytest
 
 The main(url) function runs everything together:
 
-incident_data = fetchIncidents(url): Fetches incident data from the provided URL.
+1. **'incident_data = fetchIncidents(url)'**:
+   - Fetches incident data from the provided URL.
 
-incidents = extractIncidents(incident_data): Extracts and processes incidents from the fetched data.
+2. **'incidents = extractIncidents(incident_data)'**:
+   - Extracts and processes incidents from the fetched data.
 
-db = createdb(): Initializes the database.
+3. **'db = createdb()'**:
+   - Initializes the database.
 
-populatedb(db, incidents):Inserts the extracted incidents into the initialized database.
+4. **'populatedb(db, incidents)'**:
+   - Inserts the extracted incidents into the initialized database.
 
-status(db):Checks or reports the status of the database.
+5. **'status(db)'**:
+   - Checks or reports the status of the database.
 
 ### fetchincidents.py
 
