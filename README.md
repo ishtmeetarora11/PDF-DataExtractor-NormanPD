@@ -55,6 +55,19 @@ The main(url) function runs everything together:
 
 ### fetchincidents.py
 
+```
+def fetchIncidents(url, headers={}):
+
+    This function fetches an incident PDF file from a given URL using Python’s urllib.request library. It sends an HTTP request to the specified URL, optionally including additional headers, and returns the content of the PDF as a BytesIO object.
+
+    Args:
+        url (str): The URL from which the incident PDF is to be downloaded.
+        headers (dict, optional): A dictionary of optional HTTP headers to be included in the request. If no headers are provided, an empty dictionary is used by default.
+        
+    Returns:
+        BytesIO: A BytesIO object containing the binary content of the incident PDF file. Using this later to read and process the PDF data in memory.
+
+```
 
 ### extractincidents.py
 
