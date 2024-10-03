@@ -90,11 +90,61 @@ def extractIncidents(incident_data):
 ```
 ### db.py
 
+```
+def createdb():
+
+    This function is responsible for creating a fresh SQLite database and initializing a table for storing incident records. If the database already exists, it deletes it before creating a new one.
+        
+    connection: An SQLite database connection object that can be used for further database operations.
+
+    An SQL command is executed to create a table named incidents. The table contains the following fields:
+
+    incident_time (TEXT): The date and time of the incident.
+    incident_number (TEXT): The incident’s unique identifier.
+    incident_location (TEXT): The location of the incident.
+    nature (TEXT): The type or nature of the incident.
+    incident_ori (TEXT): The originating agency identifier.
+
+```
+```
+def populatedb(conn, incidents):
+
+    This function populates the database with incident records. It inserts data into the incidents table using a list of dictionaries, each representing an incident.
+
+    Args:
+        conn (sqlite3.Connection): The database connection object created by createdb().
+
+        incidents (list): A list of dictionaries, where each dictionary represents an incident with fields like 'Date_Time', 'Incident Number', 'Location', 'Nature', and 'ORI'.
+        
+    Inserting data:
+        The incidents list is transformed into a list of tuples, each containing values in the following order: Date_Time, Incident Number, Location, Nature, and ORI.
+
+        The executemany method is used to insert multiple rows into the incidents table. Each tuple is inserted into the table using placeholders (?, ?, ?, ?, ?), corresponding to the five columns.
+
+```
+```
+def extractIncidents(incident_data):
+
+    This function processes binary incident data from a PDF and extracts relevant incident records. It uses the PyPDF library to read the PDF and regular expressions to parse the data into structured information.
+
+    Args:
+        incident_data (bytes): Binary data of the PDF file that contains incident information, fetched from the URL.
+        
+    Returns:
+        list: list of dictionaries, where each dictionary represents an individual incident. Each dictionary contains the following keys:
+        'Date_Time': The date and time of the incident.
+        'Incident Number': A unique identifier for the incident.
+        'Location': The location where the incident occurred.
+        'Nature': The nature or type of the incident.
+        'ORI': The originating agency identifier.
+
+```
 
 ## Bugs and Assumptions
 
-
 ### Assumptions
+
+
 
 
 ## Test Cases
