@@ -71,7 +71,23 @@ def fetchIncidents(url, headers={}):
 
 ### extractincidents.py
 
+```
+def extractIncidents(incident_data):
 
+    This function processes binary incident data from a PDF and extracts relevant incident records. It uses the PyPDF library to read the PDF and regular expressions to parse the data into structured information.
+
+    Args:
+        incident_data (bytes): Binary data of the PDF file that contains incident information, fetched from the URL.
+        
+    Returns:
+        list: list of dictionaries, where each dictionary represents an individual incident. Each dictionary contains the following keys:
+        'Date_Time': The date and time of the incident.
+        'Incident Number': A unique identifier for the incident.
+        'Location': The location where the incident occurred.
+        'Nature': The nature or type of the incident.
+        'ORI': The originating agency identifier.
+
+```
 ### db.py
 
 
