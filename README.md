@@ -151,13 +151,47 @@ def status(conn):
 
 ## Test Cases
 
-
 ### test_db.py
 
+This tests the functionality of a database-related module (db) using the pytest framework and mocking (unittest.mock). It ensures that the database is created, populated, and can produce a status summary, all without writing to disk (by using an in-memory SQLite database).
+
+The patch() function is used to mock sqlite3.connect so that when the db.createdb() function is called, it creates an in-memory database instead of a file-based one.
+
+The db.createdb() function is called, which creates the database schema (table) and returns a connection object (conn).
+
+After the test using this fixture is completed, the connection is closed (conn.close()).
+
+The connection object is then passed to the test functions (test_createdb, test_populatedb, and test_status).
+
+The test checks that the createdb() function successfully creates the incidents table in the database.
+
+The test verifies that the populatedb() function correctly inserts data into the incidents table.
+
+The test checks that the status() function correctly generates a summary of incidents by nature (e.g., "Theft|1", "Assault|1") and prints it.
 
 ### test_extractincidents.py
 
+This test case is designed to verify that the extractIncidents function from the extractincidents module correctly processes a PDF containing incident records and extracts the relevant data into structured dictionaries.
+
+The mock PDF content is structured to resemble the layout of the actual incident PDF, with headers like Date / Time, Incident Number, Location, Nature, and Incident ORI. Two sample incidents are included
+
+The PDF data is read and stored in the variable info
+
+The extractIncidents function is called with the fetched PDF data (info). The function processes the binary data, extracts incident information, and returns it as a list of dictionaries.
+
+Two assertions are made to ensure that the data is correctly extracted
+
 
 ### test_incident.py
+
+This test case is designed to validate the behavior of the fetchIncidents function by mocking the network request (urllib.request.urlopen). It ensures that the function properly sends the HTTP request, sets the appropriate headers, and handles the response
+
+The @patch('urllib.request.urlopen') decorator is used to replace the actual urlopen function with a mock object. This allows the test to simulate the behavior of a real HTTP request without actually making a network call.
+
+The mock object (mock_urlopen) is passed as an argument to the test function.
+
+The test uses http://example.com/test as the sample URL, which simulates the URL that the fetchIncidents function will use to fetch data.
+
+The test asserts that the value returned by fetchIncidents matches the expected value b"Ishtmeet", which was set in the mock response.
 
 
