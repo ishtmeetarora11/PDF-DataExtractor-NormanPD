@@ -123,20 +123,18 @@ def populatedb(conn, incidents):
 
 ```
 ```
-def extractIncidents(incident_data):
+def status(conn):
 
-    This function processes binary incident data from a PDF and extracts relevant incident records. It uses the PyPDF library to read the PDF and regular expressions to parse the data into structured information.
+    This function queries the database and outputs a summary of incident types (nature) along with the number of occurrences for each type.
 
     Args:
-        incident_data (bytes): Binary data of the PDF file that contains incident information, fetched from the URL.
+        conn (sqlite3.Connection): The database connection object created by createdb().
         
-    Returns:
-        list: list of dictionaries, where each dictionary represents an individual incident. Each dictionary contains the following keys:
-        'Date_Time': The date and time of the incident.
-        'Incident Number': A unique identifier for the incident.
-        'Location': The location where the incident occurred.
-        'Nature': The nature or type of the incident.
-        'ORI': The originating agency identifier.
+    Printing Results:
+
+        An SQL SELECT statement is executed to count the occurrences of each type of incident (nature) in the incidents table. The results are grouped by the nature column and sorted alphabetically.
+
+        The function iterates through the result set, printing each incident type (nature) and its count in the format nature|count.
 
 ```
 
@@ -144,7 +142,11 @@ def extractIncidents(incident_data):
 
 ### Assumptions
 
+-> The incident data is assumed to be available in a PDF format at the provided URL. The code relies on this assumption, as it uses a PDF parser (PdfReader) to extract content.
 
+-> The create DB function assumes that we want to start with a clean database each time the script is run. It deletes the existing database (normanpd.db) if it already exists.
+
+-> The connection passed to the function is assumed to be a valid SQLite connection object.
 
 
 ## Test Cases
