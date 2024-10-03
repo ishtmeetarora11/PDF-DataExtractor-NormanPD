@@ -6,10 +6,13 @@ name = "pypi"
 [packages]
 requests = "*"
 project0 = {file = ".", editable = true}
-PyPDF2 = "*"
 pypdf = "*"
+pytest = "*"
+mocker = "*"
+pytest-mock = "*"
 
 [dev-packages]
+pytest = "*"
 
 [requires]
 python_version = "3.12.5"

@@ -9,14 +9,14 @@ def extractIncidents(incident_data):
     incident_records = []
     for page in reader.pages:
         text = page.extract_text(extraction_mode="layout")
-        for line in text.split('\n'):
-            line = line.strip()
+        for info in text.split('\n'):
+            info = info.strip()
             
-            if line.startswith('Date / Time') or line.startswith('NORMAN POLICE DEPARTMENT') or line.startswith('Daily Incident Summary'):
+            if info.startswith('Date / Time') or info.startswith('NORMAN POLICE DEPARTMENT') or info.startswith('Daily Incident Summary'):
                 continue
-            if re.match(r'^\d{1,2}/\d{1,2}/\d{4}', line):
-                parts = re.split(r'\s{2,}', line)
-                if len(parts) >= 5:  
+            if re.match(r'^\d{1,2}/\d{1,2}/\d{4}', info):
+                parts = re.split(r'\s{2,}', info)
+                if len(parts) >= 3:  
                     incident = {
                         'Date_Time': parts[0],
                         'Incident Number': parts[1],
@@ -25,5 +25,6 @@ def extractIncidents(incident_data):
                         'ORI': parts[4]
                     }
                     incident_records.append(incident)
+    
     return incident_records
         
